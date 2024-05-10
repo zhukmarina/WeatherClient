@@ -10,45 +10,42 @@ import UIKit
 extension ViewController{
     
     
-    func loadMainWeatherInfo(for cityName: String ,completion: ((DMWeatherInfo)->())?){
+    func loadMainWatherInfo(for location: Location, completion: ((DMWeatherInfo) -> ())?) {
         
         DispatchQueue.global(qos: .default).async { [weak self] in
             
-            let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(cityName),ua&appid=cdcac2d1ff76a517515e446368a0f5af"
+            let urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(location.latitude)&lon=\(location.longitude)&appid=3ce97cc74d4cc39f3c06528e45532414"
             
-           guard let url = URL(string: urlString)
+            guard let url = URL(string: urlString)
             else {
-               assertionFailure("Wrong url")
-               return
-           }
+                assertionFailure("wrong url")
+                return
+            }
             
             var urlRequest = URLRequest(url: url)
             urlRequest.httpMethod = "GET"
             
             URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                 
-                if let responseError = error{
-                    debugPrint(responseError.localizedDescription )
-                }else if let responseData = data {
-                    
-                    do{
+                if let responseError = error {
+                    debugPrint(responseError.localizedDescription)
+                } else if let responseData = data {
+                    do {
                         let result = try JSONDecoder().decode(DMWeatherInfo.self, from: responseData)
-                        debugPrint(result)
-                      
+                        debugPrint("")
+                        
                         DispatchQueue.main.async {
                             completion?(result)
                         }
-                        
-                    }catch let error{
+                    } catch let error {
                         debugPrint(error.localizedDescription)
                     }
-                    
                 }
-                
             }.resume()
-            
         }
-        }
+        
+        
+    }
       
 }
 

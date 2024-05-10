@@ -7,8 +7,11 @@
 
 import CoreData
 
-extension CoreDataService{
-    
+protocol CoreDataWeather {
+    func insertWeatherInfo(with info: DMWeatherInfo)
+    func fetchAllWeatherInfo() -> [CDWeatherInfo]
+}
+extension CoreDataService:CoreDataWeather{
     func insertWeatherInfo(with info: DMWeatherInfo){
         
         let weatherInfoEntityDescription = NSEntityDescription.entity(forEntityName: "CDWeatherInfo", in: context)!
@@ -32,6 +35,15 @@ extension CoreDataService{
         save(context: context)
     }
     
+    func fetchAllWeatherInfo() -> [CDWeatherInfo] {
+        let fetchRequest = CDWeatherInfo.fetchRequest()
+        
+       let fetchedResult = fetchDataFromEntity(CDWeatherInfo.self, fetchRequest: fetchRequest)
+        return fetchedResult
+    }
+}
+extension CoreDataService{
+    
     func insertWeatherDetails(with details: DMWeatherInfo.Weather)->  CDWeatherDetails? {
         
         let weatherDetailsEntityDescription = NSEntityDescription.entity(forEntityName: "CDWeatherDetails", in: context)!
@@ -48,11 +60,5 @@ extension CoreDataService{
         
         return weatherDetailsEntity
     }
-    
-    func fetchAllWeatherInfo() -> [CDWeatherInfo] {
-        let fetchRequest = CDWeatherInfo.fetchRequest()
-        
-       let fetchedResult = fetchDataFromEntity(CDWeatherInfo.self, fetchRequest: fetchRequest)
-        return fetchedResult
-    }
+   
 }
