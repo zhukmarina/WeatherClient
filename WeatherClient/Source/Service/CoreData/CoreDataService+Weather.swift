@@ -9,8 +9,11 @@ import CoreData
 
 protocol CoreDataWeather {
     func insertWeatherInfo(with info: DMWeatherInfo)
+    
     func fetchAllWeatherInfo() -> [CDWeatherInfo]
 }
+
+
 extension CoreDataService:CoreDataWeather{
     func insertWeatherInfo(with info: DMWeatherInfo){
         
@@ -35,14 +38,17 @@ extension CoreDataService:CoreDataWeather{
         save(context: context)
     }
     
-    func fetchAllWeatherInfo() -> [CDWeatherInfo] {
+func fetchAllWeatherInfo() -> [CDWeatherInfo] {
         let fetchRequest = CDWeatherInfo.fetchRequest()
-        
        let fetchedResult = fetchDataFromEntity(CDWeatherInfo.self, fetchRequest: fetchRequest)
+
         return fetchedResult
+       
     }
+    
 }
-extension CoreDataService{
+
+private extension CoreDataService{
     
     func insertWeatherDetails(with details: DMWeatherInfo.Weather)->  CDWeatherDetails? {
         

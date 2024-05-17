@@ -2,7 +2,7 @@
 //  CDWeatherDetails+CoreDataProperties.swift
 //  WeatherClient
 //
-//  Created by Marina Zhukova on 06.05.2024.
+//  Created by Marina Zhukova on 15.05.2024.
 //
 //
 

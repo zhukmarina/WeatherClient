@@ -11,47 +11,33 @@ class MainView: UIView{
     
     weak var delegate: MainViewDelegate?
     
-    var label = UILabel()
+    @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var cityNamelabel: UILabel!
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .red
-        setupUI()
-        setupLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    @IBOutlet weak var dateLaabel: UILabel!
+    @IBOutlet weak var windLabel: UILabel!
+    @IBOutlet weak var humCounterLabel: UILabel!
     
     func setupUI() {
-        backgroundColor = .red
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 54.0)
-        label.textAlignment = .center
+
     }
     
-    func setupLayout() {
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(label)
-        
-        label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Constant.labelSideOffset).isActive = true
-        label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Constant.labelSideOffset).isActive = true
-        label.topAnchor.constraint(equalTo: topAnchor, constant: Constant.labelSideOffset).isActive = true
-        label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Constant.labelSideOffset).isActive = true
-    }
+
 }
 
 extension MainView: MainViewProtocol{
-    func setupWeather(text: String) {
-        label.text = text
+    
+    
+    func setupWeather(temp: String, cityName: String, hum:String, wind:String, date:String) {
+        tempLabel.text = "\(temp)°C"
+        cityNamelabel.text = cityName
+        humCounterLabel.text = "\(hum)%"
+        windLabel.text = "\(wind)m/s"
+        dateLaabel.text = date
+        
     }
     
     
 }
 
-private enum Constant {
-    
-    static let labelSideOffset: CGFloat = 30.0
-}
+

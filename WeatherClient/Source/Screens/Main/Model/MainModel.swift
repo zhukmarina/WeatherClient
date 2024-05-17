@@ -18,28 +18,31 @@ class MainModel{
         self.delegate = delegate
         self.networkService = ServiceProvider.networkService()
         self.storageService = ServiceProvider.coreDataService()
+        
+      
     }
 }
 
 extension MainModel: MainModelProtocol {
     func loadData() {
-        
-        
-        
+
         if let storageData = storageService.fetchAllWeatherInfo().last{
             delegate?.dataDidLoad(with: storageData)
+            print("storageData!!!!!!\(storageData)")
         }else{
             DispatchQueue.global(qos: .default).async { [weak self] in
-                
-            
+
             let location = Location(latitude: 49.989619, longitude: 36.241182)
             
                 self?.networkService.loadWeather(for: location) {[weak self] weatherInfo, error in
                 DispatchQueue.main.async{
                 if let weather = weatherInfo {
                     self?.storageService.insertWeatherInfo(with: weather)
+               
+                    print(weather)
                     if let fetchedWeather = self?.storageService.fetchAllWeatherInfo().last{
                         self?.delegate?.dataDidLoad(with: fetchedWeather)
+                      
                     }
                     }
                     }
@@ -47,4 +50,6 @@ extension MainModel: MainModelProtocol {
             }
         }
     }
+    
+
 }
