@@ -64,7 +64,6 @@
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yS9-2U-F8L">
                                 <rect key="frame" x="131" y="147" width="131" height="131"/>
-                                <color key="backgroundColor" red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="131" id="665-Cv-eN8"/>
                                     <constraint firstAttribute="height" constant="131" id="NSM-TD-jk3"/>
@@ -73,8 +72,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-Y7-cqu">
                                 <rect key="frame" x="30" y="328" width="333" height="310"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFu-eN-eQt">
-                                        <rect key="frame" x="145.66666666666666" y="17" width="42" height="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFu-eN-eQt">
+                                        <rect key="frame" x="62.666666666666686" y="17" width="208" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="b95-8E-Xwf"/>
                                         </constraints>
@@ -188,7 +187,7 @@
                                     <constraint firstItem="UXO-xn-yv2" firstAttribute="top" secondItem="AFu-eN-eQt" secondAttribute="bottom" constant="-2" id="il5-hu-5pA"/>
                                     <constraint firstItem="M35-Md-1mh" firstAttribute="centerX" secondItem="zJ5-Y7-cqu" secondAttribute="centerX" id="rKP-Rd-fV0"/>
                                     <constraint firstItem="M35-Md-1mh" firstAttribute="centerY" secondItem="zJ5-Y7-cqu" secondAttribute="centerY" id="xe8-Jx-A3r"/>
-                                    <constraint firstItem="AFu-eN-eQt" firstAttribute="width" secondItem="zJ5-Y7-cqu" secondAttribute="width" constant="-291" id="z5h-6J-oO5"/>
+                                    <constraint firstItem="AFu-eN-eQt" firstAttribute="width" secondItem="zJ5-Y7-cqu" secondAttribute="width" constant="-125" id="z5h-6J-oO5"/>
                                     <constraint firstItem="qzd-pn-eXC" firstAttribute="top" secondItem="M35-Md-1mh" secondAttribute="bottom" constant="20.666666666666657" id="zo2-42-5ZD"/>
                                 </constraints>
                             </view>
@@ -223,6 +222,8 @@
                             <outlet property="cityNamelabel" destination="4Yc-6x-7t4" id="WNQ-nY-gNS"/>
                             <outlet property="dateLaabel" destination="AFu-eN-eQt" id="oVW-mE-qML"/>
                             <outlet property="humCounterLabel" destination="X8p-Cm-NMY" id="JWp-Ky-KD2"/>
+                            <outlet property="iconLabel" destination="yS9-2U-F8L" id="S8E-kJ-o7b"/>
+                            <outlet property="mainInfoLabel" destination="M35-Md-1mh" id="Xr8-CW-rAP"/>
                             <outlet property="tempLabel" destination="UXO-xn-yv2" id="RPw-Ol-Hr8"/>
                             <outlet property="windLabel" destination="8cj-dU-fhW" id="ucG-PO-RpR"/>
                         </connections>

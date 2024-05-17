@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MainViewProtocol{
-    func setupWeather(temp:String,cityName: String, hum:String, wind:String, date:String)
+    func setupWeather(temp:String,cityName: String, hum:String, wind:String, date:String, mainInfo: String, icon: String)
 }
