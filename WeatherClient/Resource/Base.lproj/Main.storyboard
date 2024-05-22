@@ -69,7 +69,7 @@
                                     <constraint firstAttribute="height" constant="131" id="NSM-TD-jk3"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-Y7-cqu">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJ5-Y7-cqu" customClass="RoundedView" customModule="WeatherClient" customModuleProvider="target">
                                 <rect key="frame" x="30" y="328" width="333" height="310"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AFu-eN-eQt">
@@ -82,19 +82,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M35-Md-1mh">
-                                        <rect key="frame" x="140.66666666666666" y="141.66666666666669" width="52" height="26.666666666666657"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <rect key="frame" x="141" y="140.33333333333331" width="51.333333333333343" height="29.666666666666657"/>
+                                        <fontDescription key="fontDescription" name="SinhalaSangamMN" family="Sinhala Sangam MN" pointSize="22"/>
                                         <color key="textColor" red="0.98962337810000001" green="0.99364271280000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXO-xn-yv2">
-                                        <rect key="frame" x="112.66666666666666" y="31" width="108" height="111"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="93"/>
+                                        <rect key="frame" x="117.66666666666666" y="31.000000000000007" width="97.666666666666657" height="112.66666666666669"/>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="93"/>
                                         <color key="textColor" red="0.98962337810000001" green="0.99364271280000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qzd-pn-eXC">
-                                        <rect key="frame" x="66.666666666666686" y="189" width="200" height="100"/>
+                                        <rect key="frame" x="66.666666666666686" y="190.66666666666663" width="200" height="100"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MsY-rG-gYS">
                                                 <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>

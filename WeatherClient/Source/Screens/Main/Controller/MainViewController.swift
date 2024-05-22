@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
         contentView = mainView
         mainView.delegate = self
         setupInitialState()
+        setupUI()
         model.loadData()
     }
     
@@ -31,7 +32,17 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: MainViewDelegate{
-   
+    func setupUI(){
+        let gradientView = GradientView()
+            gradientView.startColor = UIColor(red: 71/255, green: 191/255, blue: 223/255, alpha: 1.0)
+            gradientView.endColor = UIColor(red: 74/255, green: 145/255, blue: 255/255, alpha: 1.0)
+            gradientView.startPoint = CGPoint(x: 0, y: 0)
+            gradientView.endPoint = CGPoint(x: 1, y: 1)
+
+            gradientView.frame = view.bounds
+        
+            view.insertSubview(gradientView, at: 0)
+    }
 }
 
 extension MainViewController: MainModelDelegate {

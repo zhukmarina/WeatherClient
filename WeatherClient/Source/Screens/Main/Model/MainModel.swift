@@ -46,7 +46,7 @@ extension MainModel: MainModelProtocol {
         }
     }
 
-    func loadWeatherDetails(for weatherInfo: CDWeatherInfo) {
+ private func loadWeatherDetails(for weatherInfo: CDWeatherInfo) {
        
         weatherInfo.weatherDetails?.allObjects.forEach { (detail) in
             if let weatherDetail = detail as? CDWeatherDetails {
