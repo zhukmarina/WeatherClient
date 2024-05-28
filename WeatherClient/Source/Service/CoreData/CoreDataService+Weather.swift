@@ -2,7 +2,7 @@ import CoreData
 
 protocol CoreDataWeather {
     func insertWeatherInfo(with info: DMWeatherInfo)
-    func insertForecastWeather(with info: DMForecastWeather)
+    func insertForecastWeather(with info: DMForecastWeather, for cityName:String?)
     func fetchAllWeatherInfo() -> [CDWeatherInfo]
     func fetchWeatherDetails(for weatherInfo: CDWeatherInfo) -> CDWeatherDetails?
 }
@@ -29,7 +29,7 @@ extension CoreDataService: CoreDataWeather {
         weatherInfoEntity.pressure = Int32(info.main.pressure)
         weatherInfoEntity.humidity = Int32(info.main.humidity)
         weatherInfoEntity.speed = info.wind.speed
-        weatherInfoEntity.dt = Int32(Int64(info.dt))
+        weatherInfoEntity.dt = info.dt
 
         for details in info.weather {
             if let detailsEntity = insertWeatherDetails(with: details) {
@@ -40,7 +40,7 @@ extension CoreDataService: CoreDataWeather {
         save(context: context)
     }
 
-    func insertForecastWeather(with info: DMForecastWeather) {
+    func insertForecastWeather(with info: DMForecastWeather, for cityName:String?) {
 
         deleteAllWeatherInfo()
 
@@ -50,8 +50,9 @@ extension CoreDataService: CoreDataWeather {
                 assertionFailure("Failed to create CDWeatherInfo")
                 return
             }
-
-            forecastInfoEntity.dt = Int32(forecast.dt)
+            
+            forecastInfoEntity.cityName = cityName
+            forecastInfoEntity.dt = Double(forecast.dt)
             forecastInfoEntity.temperature = forecast.main.temp
             
             for details in forecast.weather {
@@ -87,7 +88,7 @@ extension CoreDataService: CoreDataWeather {
             return []
         }
     }
-
+    
 
     func deleteAllWeatherInfo() {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CDWeatherInfo.fetchRequest()

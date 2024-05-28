@@ -10,9 +10,10 @@ import Foundation
 struct DMForecastWeather: Codable {
     
     let list: [WeatherForecast]
-    
+   
     
     struct WeatherForecast: Codable {
+        
         let dt: Int
         let main: Main
         let weather: [Weather]

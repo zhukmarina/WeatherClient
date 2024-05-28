@@ -11,7 +11,7 @@ import Foundation
 struct DMWeatherInfo: Decodable{
     let id: Int
     let name: String
-    let dt: Int
+    let dt: Double
     let weather:[Weather]
     let main: Main
     let wind: Wind

@@ -1,7 +1,7 @@
 import UIKit
 
 class ForecastViewController: UIViewController {
-
+    var cityName: String?
     var model: ForecastModelProtocol!
     var contentView: ForecastView!
     var weatherData: [CDWeatherInfo] = []
@@ -16,7 +16,7 @@ class ForecastViewController: UIViewController {
         forecastView.delegate = self
         setupInitialState()
         setupUI()
-        model.loadData()
+        model.loadData(for: cityName)
 
         forecastView.todayForecastCollectionView.delegate = self
         forecastView.todayForecastCollectionView.dataSource = self
@@ -94,7 +94,7 @@ extension ForecastViewController: UICollectionViewDelegate, UICollectionViewData
 
             let forecast = weatherData[indexPath.item ]
             let temperature = WeatherUtils.convertToCelsius(kelvin: forecast.temperature)
-            let time = WeatherUtils.formatTime(from: Int(forecast.dt))
+            let time = WeatherUtils.formatTime(from: forecast.dt)
             cell.configure(time: time, temperature: temperature, weatherIcon: UIImage(named: "sunny"))
             return cell
         } else {
@@ -105,7 +105,7 @@ extension ForecastViewController: UICollectionViewDelegate, UICollectionViewData
 
             let forecast = weatherData[indexPath.item * 8]
             let temperature = WeatherUtils.convertToCelsius(kelvin: forecast.temperature)
-            let date = WeatherUtils.formatDayAndDate(from: Int(forecast.dt))
+            let date = WeatherUtils.formatDayAndDate(from: forecast.dt)
             cell.configure(date: date, temperature: temperature, weatherIcon: UIImage(named: "cloudy"))
             return cell
         }

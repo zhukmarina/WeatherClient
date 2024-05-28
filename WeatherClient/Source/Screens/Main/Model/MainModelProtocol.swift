@@ -9,4 +9,5 @@ import Foundation
 
 protocol MainModelProtocol{
     func loadData()
+    var cityName: String?{get}
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    
+  
     var model: MainModelProtocol!
     var contentView: MainViewProtocol!
       
@@ -24,6 +24,14 @@ class MainViewController: UIViewController {
         model.loadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "forecastSegue"{
+            if let vc = segue.destination as? ForecastViewController{
+                vc.cityName = model.cityName
+            }
+        }
+    }
+  
     
     private func setupInitialState() {
         let mainModel = MainModel(delegate: self)
@@ -48,7 +56,7 @@ extension MainViewController: MainViewDelegate{
 extension MainViewController: MainModelDelegate {
 
     func dataDidLoad(with data: CDWeatherInfo) {
-        let dateString = WeatherUtils.formatDate(from:Int(data.dt))
+        let dateString = WeatherUtils.formatDate(from:TimeInterval(data.dt))
         let temperature = WeatherUtils.convertToCelsius(kelvin: data.temperature)
         let cityName = data.cityName ?? ""
         let hum = "\(data.humidity)"

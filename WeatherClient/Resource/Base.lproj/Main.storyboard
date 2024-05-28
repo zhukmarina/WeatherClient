@@ -159,7 +159,7 @@
                                     <color key="baseBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="bPk-2i-zdr" kind="show" id="ESM-aI-fVS"/>
+                                    <segue destination="bPk-2i-zdr" kind="show" identifier="forecastSegue" id="ESM-aI-fVS"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ufe-zO-Sch">

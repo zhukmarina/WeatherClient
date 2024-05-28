@@ -12,9 +12,18 @@ class MainModel {
         self.networkService = ServiceProvider.networkService()
         self.storageService = ServiceProvider.coreDataService()
     }
+    
+    private var selectCityName:String?
 }
 
 extension MainModel: MainModelProtocol {
+    var cityName: String? {
+        get {
+            return selectCityName
+        }
+       
+    }
+    
     func loadData() {
         if let storageData = storageService.fetchAllWeatherInfo().last {
             loadWeatherDetails(for: storageData)
@@ -42,6 +51,7 @@ extension MainModel: MainModelProtocol {
                 
             }
         }
+        selectCityName = weatherInfo.cityName
         delegate?.dataDidLoad(with: weatherInfo)
     }
 }

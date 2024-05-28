@@ -15,8 +15,8 @@ class ForecastModel {
 }
 
 extension ForecastModel: ForecastModelProtocol {
-    func loadData() {
-        let storageData = storageService.fetchAllWeatherInfo()
+    func loadData(for cityName:String?) {
+        let storageData = storageService.fetchAllWeatherInfo().filter({$0.cityName == cityName})
         
         if !storageData.isEmpty {
             delegate?.dataDidLoad(with: storageData)
@@ -26,8 +26,10 @@ extension ForecastModel: ForecastModelProtocol {
                 let location = Location(latitude: 50.4333, longitude: 30.5167)
                 self?.networkService.loadWeatherForecast(for: location) { [weak self] forecastInfo, error in
                     DispatchQueue.main.async {
-                        if let forecast = forecastInfo {
-                            self?.storageService.insertForecastWeather(with: forecast)
+                        if var forecast = forecastInfo {
+                            
+                            
+                            self?.storageService.insertForecastWeather(with: forecast, for: cityName)
                             print("Loaded data from API and saved to storage: \(forecast)")
                             
                             if let fetchedForecast = self?.storageService.fetchAllWeatherInfo() {

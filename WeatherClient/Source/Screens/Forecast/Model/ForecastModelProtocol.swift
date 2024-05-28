@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ForecastModelProtocol{
-    func loadData()
+    func loadData(for cityName:String?)
 }

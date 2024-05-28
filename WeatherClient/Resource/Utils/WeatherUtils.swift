@@ -13,7 +13,7 @@ struct WeatherUtils {
         return String(format: "%.0f°C", celsius)
     }
 
-    static func formatDate(from timestamp: Int, localeIdentifier: String = "en_EN") -> String {
+    static func formatDate(from timestamp: TimeInterval, localeIdentifier: String = "en_EN") -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .short
@@ -22,7 +22,7 @@ struct WeatherUtils {
         return dateFormatter.string(from: date)
     }
     
-    static func formatTime(from timestamp: Int, localeIdentifier: String = "en_EN") -> String {
+    static func formatTime(from timestamp: TimeInterval, localeIdentifier: String = "en_EN") -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .short
@@ -31,7 +31,7 @@ struct WeatherUtils {
         return dateFormatter.string(from: date)
     }
     
-    static func formatDayAndDate(from timestamp: Int, localeIdentifier: String = "en_EN") -> String {
+    static func formatDayAndDate(from timestamp: TimeInterval, localeIdentifier: String = "en_EN") -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEE d" 
