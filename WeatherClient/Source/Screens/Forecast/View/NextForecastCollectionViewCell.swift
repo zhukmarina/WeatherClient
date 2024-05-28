@@ -16,6 +16,7 @@ class NextWeekForecastCell: UICollectionViewCell {
       
         let label = UILabel()
         label.text = "Test"
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(label)
         
@@ -33,6 +34,9 @@ class NextWeekForecastCell: UICollectionViewCell {
         
         labelDate.text = "\(date)"
         labelTemp.text = "\(temperature)"
+        
+        labelDate.textColor = .white
+        labelTemp.textColor = .white
         
         labelDate.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(labelDate)

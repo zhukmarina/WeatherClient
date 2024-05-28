@@ -253,24 +253,17 @@
                                     <constraint firstAttribute="height" constant="21" id="PYO-wL-s1K"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVQ-FK-GlR">
-                                <rect key="frame" x="315" y="108" width="48" height="27"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.98962337810000001" green="0.99364271280000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Forecast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzB-9t-l2g">
                                 <rect key="frame" x="29" y="389" width="122" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xu0-18-TYl">
                                 <rect key="frame" x="29" y="151" width="334" height="213"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pJJ-cB-4Th">
                                     <size key="itemSize" width="80" height="155"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -317,14 +310,11 @@
                         <viewLayoutGuide key="safeArea" id="7vK-Ns-zPg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xu0-18-TYl" firstAttribute="top" secondItem="mVQ-FK-GlR" secondAttribute="bottom" constant="16" id="BFj-zt-XWk"/>
                             <constraint firstItem="1v2-kd-twz" firstAttribute="trailing" secondItem="xu0-18-TYl" secondAttribute="trailing" constant="1" id="CAE-B1-hf1"/>
-                            <constraint firstItem="7vK-Ns-zPg" firstAttribute="trailing" secondItem="mVQ-FK-GlR" secondAttribute="trailing" constant="30" id="GhF-s2-Ur1"/>
                             <constraint firstItem="1v2-kd-twz" firstAttribute="top" secondItem="fzB-9t-l2g" secondAttribute="bottom" constant="33" id="QvP-ic-9Ld"/>
                             <constraint firstItem="fzB-9t-l2g" firstAttribute="top" secondItem="xu0-18-TYl" secondAttribute="bottom" constant="25" id="RKp-dA-tyq"/>
                             <constraint firstItem="xu0-18-TYl" firstAttribute="top" secondItem="pAX-GE-IWr" secondAttribute="bottom" constant="19" id="apo-Ub-oaQ"/>
                             <constraint firstItem="fzB-9t-l2g" firstAttribute="leading" secondItem="7vK-Ns-zPg" secondAttribute="leading" constant="29" id="bkN-UY-qjY"/>
-                            <constraint firstItem="mVQ-FK-GlR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pAX-GE-IWr" secondAttribute="trailing" constant="8" symbolic="YES" id="d5C-9D-aup"/>
                             <constraint firstItem="7vK-Ns-zPg" firstAttribute="bottom" secondItem="1v2-kd-twz" secondAttribute="bottom" constant="55" id="fqB-Rg-II8"/>
                             <constraint firstItem="7vK-Ns-zPg" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fzB-9t-l2g" secondAttribute="trailing" symbolic="YES" id="hSX-h1-wce"/>
                             <constraint firstItem="1v2-kd-twz" firstAttribute="centerX" secondItem="7vK-Ns-zPg" secondAttribute="centerX" id="lcV-cB-uCl"/>
@@ -332,7 +322,6 @@
                             <constraint firstItem="pAX-GE-IWr" firstAttribute="top" secondItem="7vK-Ns-zPg" secondAttribute="top" constant="8" id="sGm-4u-oMn"/>
                             <constraint firstItem="1v2-kd-twz" firstAttribute="leading" secondItem="xu0-18-TYl" secondAttribute="leading" id="vYc-ue-uI0"/>
                             <constraint firstItem="pAX-GE-IWr" firstAttribute="leading" secondItem="7vK-Ns-zPg" secondAttribute="leading" constant="29" id="w47-Vn-ifc"/>
-                            <constraint firstItem="pAX-GE-IWr" firstAttribute="centerY" secondItem="mVQ-FK-GlR" secondAttribute="centerY" id="wV5-LA-kRm"/>
                         </constraints>
                         <connections>
                             <outlet property="nextWeekColectionView" destination="1v2-kd-twz" id="ZqN-c3-3tc"/>

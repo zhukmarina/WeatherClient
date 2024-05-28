@@ -13,9 +13,11 @@ class TodayForecastCell: UICollectionViewCell {
     }
 
     private func setupSubviews() {
-        // Для перевірки
+        
+       
         let label = UILabel()
         label.text = "Test"
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(label)
         
@@ -31,6 +33,8 @@ class TodayForecastCell: UICollectionViewCell {
         let labelTemp = UILabel()
         labelTime.text = "\(time)"
         labelTemp.text = "\(temperature)"
+        labelTime.textColor = .white
+        labelTemp.textColor = .white
         labelTime.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(labelTime)
         labelTemp.translatesAutoresizingMaskIntoConstraints = false

@@ -20,6 +20,7 @@ class ForecastViewController: UIViewController {
 
         forecastView.todayForecastCollectionView.delegate = self
         forecastView.todayForecastCollectionView.dataSource = self
+
         forecastView.nextWeekColectionView.delegate = self
         forecastView.nextWeekColectionView.dataSource = self
 
@@ -33,6 +34,15 @@ class ForecastViewController: UIViewController {
         if let nextWeekFlowLayout = forecastView.nextWeekColectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             nextWeekFlowLayout.scrollDirection = .vertical
         }
+        
+        forecastView.todayForecastCollectionView.backgroundColor = UIColor(red: 126/255, green: 193/255, blue: 242/255, alpha: 1.0)
+        forecastView.nextWeekColectionView.backgroundColor = UIColor(red: 126/255, green: 193/255, blue: 242/255, alpha: 1.0)
+        
+        forecastView.todayForecastCollectionView.layer.cornerRadius = 20
+        forecastView.todayForecastCollectionView.layer.masksToBounds = true
+
+        forecastView.nextWeekColectionView.layer.cornerRadius = 20
+        forecastView.nextWeekColectionView.layer.masksToBounds = true
     }
 
     private func setupInitialState() {
@@ -41,6 +51,8 @@ class ForecastViewController: UIViewController {
     }
 
     private func setupUI() {
+        
+       
         let gradientView = GradientView()
         gradientView.startColor = UIColor(red: 71/255, green: 191/255, blue: 223/255, alpha: 1.0)
         gradientView.endColor = UIColor(red: 74/255, green: 145/255, blue: 255/255, alpha: 1.0)

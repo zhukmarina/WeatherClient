@@ -14,15 +14,9 @@ class ForecastView: UIView{
     
     @IBOutlet weak var todayForecastCollectionView: UICollectionView!
     
-    
+        
     @IBOutlet weak var nextWeekColectionView: UICollectionView!
+    
+    
 }
 
-
-//extension ForecastView: ForecastViewProtocol{
-//    func setupWeather(temp: String, cityName: String, hum: String, wind: String, date: String, mainInfo: String, icon: String) {
-//        <#code#>
-//    }
-//    
-    
-//}
