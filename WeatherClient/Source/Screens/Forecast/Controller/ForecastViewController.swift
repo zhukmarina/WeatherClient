@@ -67,9 +67,9 @@ extension ForecastViewController: ForecastModelDelegate {
 extension ForecastViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == contentView.todayForecastCollectionView {
-            return min(5, weatherData.count) // Припустимо, що у вас є дані на сьогодні
+            return min(5, weatherData.count)
         } else {
-            return weatherData.count
+            return weatherData.count / 8
         }
     }
 
@@ -80,7 +80,7 @@ extension ForecastViewController: UICollectionViewDelegate, UICollectionViewData
                 return UICollectionViewCell()
             }
 
-            let forecast = weatherData[indexPath.item]
+            let forecast = weatherData[indexPath.item ]
             let temperature = WeatherUtils.convertToCelsius(kelvin: forecast.temperature)
             let time = WeatherUtils.formatTime(from: Int(forecast.dt))
             cell.configure(time: time, temperature: temperature, weatherIcon: UIImage(named: "sunny"))
@@ -91,7 +91,7 @@ extension ForecastViewController: UICollectionViewDelegate, UICollectionViewData
                 return UICollectionViewCell()
             }
 
-            let forecast = weatherData[indexPath.item]
+            let forecast = weatherData[indexPath.item * 8]
             let temperature = WeatherUtils.convertToCelsius(kelvin: forecast.temperature)
             let date = WeatherUtils.formatDayAndDate(from: Int(forecast.dt))
             cell.configure(date: date, temperature: temperature, weatherIcon: UIImage(named: "cloudy"))
