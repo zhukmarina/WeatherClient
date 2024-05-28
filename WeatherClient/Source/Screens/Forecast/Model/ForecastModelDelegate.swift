@@ -8,6 +8,6 @@
 import Foundation
 
 protocol ForecastModelDelegate: AnyObject {
-    func dataDidLoad(with data: [CDWeatherInfo]) // Оновлено параметр
+    func dataDidLoad(with data: [CDWeatherInfo]) 
 }
 

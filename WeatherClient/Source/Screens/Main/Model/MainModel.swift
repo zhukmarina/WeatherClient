@@ -16,10 +16,10 @@ class MainModel {
 
 extension MainModel: MainModelProtocol {
     func loadData() {
-        if let storageData = storageService.fetchAllWeatherInfo().last {
-            loadWeatherDetails(for: storageData)
-            print(storageData)
-        } else {
+//        if let storageData = storageService.fetchAllWeatherInfo().last {
+//            loadWeatherDetails(for: storageData)
+//            print(storageData)
+//        } else {
             DispatchQueue.global(qos: .default).async { [weak self] in
                 let location = Location(latitude: 50.4333, longitude: 30.5167)
                 self?.networkService.loadWeather(for: location) { [weak self] weatherInfo, error in
@@ -30,7 +30,7 @@ extension MainModel: MainModelProtocol {
                                 self?.loadWeatherDetails(for: fetchedWeather)
                             }
                         }
-                    }
+//                    }
                 }
             }
         }
