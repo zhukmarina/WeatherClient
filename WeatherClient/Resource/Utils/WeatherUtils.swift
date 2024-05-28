@@ -34,7 +34,7 @@ struct WeatherUtils {
     static func formatDayAndDate(from timestamp: Int, localeIdentifier: String = "en_EN") -> String {
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEE d" // EEE for day of week, d for day of month
+        dateFormatter.dateFormat = "EEE d" 
         dateFormatter.locale = Locale(identifier: localeIdentifier)
         return dateFormatter.string(from: date)
     }

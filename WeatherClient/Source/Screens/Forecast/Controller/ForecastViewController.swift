@@ -68,8 +68,8 @@ extension ForecastViewController: ForecastViewDelegate {
 }
 
 extension ForecastViewController: ForecastModelDelegate {
-    func dataDidLoad(with data: [CDWeatherInfo]) { // Оновлено параметр
-        self.weatherData = data // Присвоєння значення параметра weatherData
+    func dataDidLoad(with data: [CDWeatherInfo]) {
+        self.weatherData = data 
         contentView.todayForecastCollectionView.reloadData()
         contentView.nextWeekColectionView.reloadData()
 //        print("Data ______________________ loaded: \(data [1...5] )")

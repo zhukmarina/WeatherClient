@@ -69,9 +69,9 @@ extension CoreDataService: CoreDataWeather {
 
     func fetchAllWeatherInfo() -> [CDWeatherInfo] {
         let fetchRequest: NSFetchRequest<CDWeatherInfo> = CDWeatherInfo.fetchRequest()
-        fetchRequest.relationshipKeyPathsForPrefetching = ["weatherDetails"] // Жадная загрузка связанных объектов
+        fetchRequest.relationshipKeyPathsForPrefetching = ["weatherDetails"] // Жадная загрузка
         
-        // Додавання сортування за датою
+       
         let sortDescriptor = NSSortDescriptor(key: "dt", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -97,7 +97,7 @@ extension CoreDataService: CoreDataWeather {
             try context.execute(deleteRequest)
             try context.save()
 
-            // Переконаємося, що ми також видаляємо об'єкти з інших контекстів, якщо вони є
+           
             if let fetchedResults = try context.fetch(fetchRequest) as? [CDWeatherInfo] {
                 for object in fetchedResults {
                     context.delete(object)

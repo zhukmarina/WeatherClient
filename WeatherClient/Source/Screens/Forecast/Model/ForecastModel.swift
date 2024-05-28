@@ -19,8 +19,8 @@ extension ForecastModel: ForecastModelProtocol {
         let storageData = storageService.fetchAllWeatherInfo()
         
         if !storageData.isEmpty {
-            delegate?.dataDidLoad(with: storageData) // Передача всіх даних делегату
-            print("Loaded data from storage: \(storageData.prefix(5))") // Вивід перших 5 записів для перевірки
+            delegate?.dataDidLoad(with: storageData)
+            print("Loaded data from storage: \(storageData.prefix(5))")
         } else {
             DispatchQueue.global(qos: .default).async { [weak self] in
                 let location = Location(latitude: 50.4333, longitude: 30.5167)
@@ -31,11 +31,11 @@ extension ForecastModel: ForecastModelProtocol {
                             print("Loaded data from API and saved to storage: \(forecast)")
                             
                             if let fetchedForecast = self?.storageService.fetchAllWeatherInfo() {
-                                self?.delegate?.dataDidLoad(with: fetchedForecast) // Передача всіх даних делегату
+                                self?.delegate?.dataDidLoad(with: fetchedForecast)
                             }
                         } else if let error = error {
                             print("Failed to load data from API: \(error)")
-                            // self?.delegate?.dataLoadFailed(with: error)
+                           
                         }
                     }
                 }
