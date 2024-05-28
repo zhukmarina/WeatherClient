@@ -2,13 +2,14 @@ import CoreData
 
 protocol CoreDataWeather {
     func insertWeatherInfo(with info: DMWeatherInfo)
-    
+    func insertForecastWeather(with info: DMForecastWeather)
     func fetchAllWeatherInfo() -> [CDWeatherInfo]
     func fetchWeatherDetails(for weatherInfo: CDWeatherInfo) -> CDWeatherDetails?
     
 }
 
 extension CoreDataService: CoreDataWeather {
+
     func fetchWeatherDetails(for weatherInfo: CDWeatherInfo) -> CDWeatherDetails? {
            
            guard let weatherDetails = weatherInfo.weatherDetails?.anyObject() as? CDWeatherDetails else {
@@ -41,11 +42,38 @@ extension CoreDataService: CoreDataWeather {
         save(context: context)
     }
     
+    func insertForecastWeather(with info: DMForecastWeather) {
+        for forecast in info.list {
+            let forecastInfoEntityDescription = NSEntityDescription.entity(forEntityName: "CDWeatherInfo", in: context)!
+            guard let forecastInfoEntity = NSManagedObject(entity: forecastInfoEntityDescription, insertInto: context) as? CDWeatherInfo else {
+                assertionFailure("Failed to create CDWeatherInfo")
+                return
+            }
+
+            forecastInfoEntity.dt = Int32(forecast.dt)
+            forecastInfoEntity.temperature = forecast.main.temp
+            
+            // Assuming you want to store some weather details
+            for details in forecast.weather {
+                if let detailsEntity = insertWeatherDetails(with: details) {
+                    forecastInfoEntity.addToWeatherDetails(detailsEntity)
+                }
+            }
+        }
+        
+        save(context: context)
+    }
+    
     func fetchAllWeatherInfo() -> [CDWeatherInfo] {
         let fetchRequest: NSFetchRequest<CDWeatherInfo> = CDWeatherInfo.fetchRequest()
         fetchRequest.relationshipKeyPathsForPrefetching = ["weatherDetails"] // Жадная загрузка связанных объектов
-        let fetchedResult = fetchDataFromEntity(CDWeatherInfo.self, fetchRequest: fetchRequest)
-        return fetchedResult
+        do {
+            let fetchedResult = try context.fetch(fetchRequest)
+            return fetchedResult
+        } catch {
+            print("Failed to fetch weather info: \(error)")
+            return []
+        }
     }
 }
 
@@ -64,4 +92,19 @@ private extension CoreDataService {
       
         return weatherDetailsEntity
     }
+    
+ private func insertWeatherDetails(with details: DMForecastWeather.Weather) -> CDWeatherDetails? {
+    let weatherDetailsEntityDescription = NSEntityDescription.entity(forEntityName: "CDWeatherDetails", in: context)!
+    guard let weatherDetailsEntity = NSManagedObject(entity: weatherDetailsEntityDescription, insertInto: context) as? CDWeatherDetails else {
+        assertionFailure("Failed to create CDWeatherDetails")
+        return nil
+    }
+    
+    weatherDetailsEntity.id = Int32(details.id)
+    weatherDetailsEntity.icon = details.icon
+    weatherDetailsEntity.mainInfo = details.main
+    weatherDetailsEntity.details = details.description
+  
+    return weatherDetailsEntity
+}
 }

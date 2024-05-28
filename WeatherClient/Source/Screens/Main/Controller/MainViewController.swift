@@ -48,9 +48,8 @@ extension MainViewController: MainViewDelegate{
 extension MainViewController: MainModelDelegate {
 
     func dataDidLoad(with data: CDWeatherInfo) {
-        let dateString = formatDate(from: Int(data.dt))
-        let temperatureCelsius = data.temperature - 273.15
-        let temperature = String(format: "%.0f", temperatureCelsius)
+        let dateString = WeatherUtils.formatDate(from:Int(data.dt))
+        let temperature = WeatherUtils.convertToCelsius(kelvin: data.temperature)
         let cityName = data.cityName ?? ""
         let hum = "\(data.humidity)"
         let windSpeed = String(format: "%.0f", data.speed)
@@ -66,16 +65,6 @@ extension MainViewController: MainModelDelegate {
             mainInfo: weatherDetails.mainInfo,
             icon: weatherDetails.icon
         )
-    }
-
-    func formatDate(from timestamp: Int) -> String {
-        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = .short
-        dateFormatter.dateStyle = .medium
-        dateFormatter.locale = Locale(identifier: "en_EN")
-        
-        return dateFormatter.string(from: date)
     }
 
     func extractWeatherDetails(from weatherDetails: NSSet?) -> (mainInfo: String, icon: String) {

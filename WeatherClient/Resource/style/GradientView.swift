@@ -8,17 +8,21 @@
 import UIKit
 
 class GradientView: UIView {
-    var startColor: UIColor = .clear
-    var endColor: UIColor = .clear
-    var startPoint: CGPoint = .zero
+    var startColor: UIColor = .white
+    var endColor: UIColor = .black
+    var startPoint: CGPoint = CGPoint(x: 0, y: 0)
     var endPoint: CGPoint = CGPoint(x: 1, y: 1)
 
     override func draw(_ rect: CGRect) {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
-        gradientLayer.startPoint = startPoint
-        gradientLayer.endPoint = endPoint
-        gradientLayer.frame = bounds
-        layer.insertSublayer(gradientLayer, at: 0)
+        let context = UIGraphicsGetCurrentContext()
+        let colors = [startColor.cgColor, endColor.cgColor]
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let colorLocations: [CGFloat] = [0.0, 1.0]
+        let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: colorLocations)!
+
+        let startPoint = CGPoint(x: self.startPoint.x * rect.width, y: self.startPoint.y * rect.height)
+        let endPoint = CGPoint(x: self.endPoint.x * rect.width, y: self.endPoint.y * rect.height)
+
+        context?.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: [])
     }
 }

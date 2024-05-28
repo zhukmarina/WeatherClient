@@ -12,6 +12,8 @@ typealias WeatherInfoCompletion = ((DMWeatherInfo?, Error?) -> ())
 protocol NetworkServiceWeather {
     
     func loadWeather(for location: Location, completion: @escaping WeatherInfoCompletion)
+    func loadWeatherForecast(for location: Location, completion: @escaping (DMForecastWeather?, Error?) -> Void) 
+      
 }
 
 
@@ -37,4 +39,31 @@ extension NetworkService: NetworkServiceWeather {
             }
         }
     }
+    
+    func loadWeatherForecast(for location: Location, completion: @escaping (DMForecastWeather?, Error?) -> Void) {
+         
+        let urlString = "\(APIConstats.forecastUrl())?lat=\(location.latitude)&lon=\(location.longitude)&appid=\(APIConstats.appId)"
+                
+                guard let url = URL(string: urlString) else {
+                    completion(nil, NSError(domain: "InvalidURL", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"]))
+                    return
+                    
+                }
+                
+                var urlRequest = URLRequest(url: url)
+                urlRequest.httpMethod = "GET"
+                
+                request(urlRequest: urlRequest) { (result: Result<DMForecastWeather, Error>) in
+                    switch result {
+                    case .success(let value):
+                        completion(value, nil)
+                    case .failure(let error):
+                        completion(nil, error)
+                    }
+                    
+                }
+        
+            }
+   
+    
 }

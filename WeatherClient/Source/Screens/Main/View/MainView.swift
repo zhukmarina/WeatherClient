@@ -21,9 +21,7 @@ class MainView: UIView{
     @IBOutlet weak var iconLabel: UIImageView!
     @IBOutlet weak var mainInfoLabel: UILabel!
     
-    func setupUI() {
-      
-    }
+
     
 
 }
@@ -32,8 +30,7 @@ extension MainView: MainViewProtocol{
     
     
     func setupWeather(temp: String, cityName: String, hum:String, wind:String, date:String, mainInfo: String, icon: String) {
-        tempLabel.text = "\(temp)°C"
-        
+        tempLabel.text = temp
         cityNamelabel.text = cityName
         humCounterLabel.text = "\(hum)%"
         windLabel.text = "\(wind) m/s"

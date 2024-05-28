@@ -1,13 +1,6 @@
-//
-//  MainModel.swift
-//  WeatherClient
-//
-//  Created by Marina Zhukova on 09.05.2024.
-//
-
 import UIKit
 
-class MainModel{
+class MainModel {
     
     weak var delegate: MainModelDelegate?
     
@@ -18,8 +11,6 @@ class MainModel{
         self.delegate = delegate
         self.networkService = ServiceProvider.networkService()
         self.storageService = ServiceProvider.coreDataService()
-        
-      
     }
 }
 
@@ -27,7 +18,6 @@ extension MainModel: MainModelProtocol {
     func loadData() {
         if let storageData = storageService.fetchAllWeatherInfo().last {
             loadWeatherDetails(for: storageData)
-            
             print(storageData)
         } else {
             DispatchQueue.global(qos: .default).async { [weak self] in
@@ -46,16 +36,12 @@ extension MainModel: MainModelProtocol {
         }
     }
 
- private func loadWeatherDetails(for weatherInfo: CDWeatherInfo) {
-       
+    private func loadWeatherDetails(for weatherInfo: CDWeatherInfo) {
         weatherInfo.weatherDetails?.allObjects.forEach { (detail) in
             if let weatherDetail = detail as? CDWeatherDetails {
-              
+                
             }
         }
-        
-      
         delegate?.dataDidLoad(with: weatherInfo)
     }
-
 }

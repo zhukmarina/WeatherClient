@@ -13,8 +13,6 @@ class NetworkService{
     
     func request <T: Decodable>(urlRequest: URLRequest, completion: @escaping (Result<T, Error>) -> Void) {
         
-        
-        
         URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             if let error = error {
                 completion(.failure(error))
