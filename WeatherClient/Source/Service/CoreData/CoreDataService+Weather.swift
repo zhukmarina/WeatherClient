@@ -1,11 +1,19 @@
 import CoreData
 
+import CoreData
+
 protocol CoreDataWeather {
     func insertWeatherInfo(with info: DMWeatherInfo)
+<<<<<<< Updated upstream
     func insertForecastWeather(with info: DMForecastWeather)
+=======
+    func insertForecastWeather(with info: DMForecastWeather, for cityName: String?)
+>>>>>>> Stashed changes
     func fetchAllWeatherInfo() -> [CDWeatherInfo]
     func fetchWeatherDetails(for weatherInfo: CDWeatherInfo) -> CDWeatherDetails?
+    func fetchAllWeatherInfoSorted(by key: String, ascending: Bool) -> [CDWeatherInfo]
 }
+
 
 extension CoreDataService: CoreDataWeather {
 
@@ -17,6 +25,7 @@ extension CoreDataService: CoreDataWeather {
     }
 
     func insertWeatherInfo(with info: DMWeatherInfo) {
+      
         let weatherInfoEntityDescription = NSEntityDescription.entity(forEntityName: "CDWeatherInfo", in: context)!
         guard let weatherInfoEntity = NSManagedObject(entity: weatherInfoEntityDescription, insertInto: context) as? CDWeatherInfo else {
             assertionFailure("Failed to create CDWeatherInfo")
@@ -40,9 +49,13 @@ extension CoreDataService: CoreDataWeather {
         save(context: context)
     }
 
+<<<<<<< Updated upstream
     func insertForecastWeather(with info: DMForecastWeather) {
 
         deleteAllWeatherInfo()
+=======
+    func insertForecastWeather(with info: DMForecastWeather, for cityName: String?) {
+>>>>>>> Stashed changes
 
         for forecast in info.list {
             let forecastInfoEntityDescription = NSEntityDescription.entity(forEntityName: "CDWeatherInfo", in: context)!
@@ -60,7 +73,6 @@ extension CoreDataService: CoreDataWeather {
                 }
             }
 
-            // Log the data being saved for debugging
             print("Saving data with dt: \(forecast.dt), temperature: \(forecast.main.temp)")
         }
 
@@ -69,9 +81,8 @@ extension CoreDataService: CoreDataWeather {
 
     func fetchAllWeatherInfo() -> [CDWeatherInfo] {
         let fetchRequest: NSFetchRequest<CDWeatherInfo> = CDWeatherInfo.fetchRequest()
-        fetchRequest.relationshipKeyPathsForPrefetching = ["weatherDetails"] // Жадная загрузка
+        fetchRequest.relationshipKeyPathsForPrefetching = ["weatherDetails"]
         
-       
         let sortDescriptor = NSSortDescriptor(key: "dt", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -87,27 +98,46 @@ extension CoreDataService: CoreDataWeather {
             return []
         }
     }
+<<<<<<< Updated upstream
 
 
     func deleteAllWeatherInfo() {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CDWeatherInfo.fetchRequest()
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+=======
+>>>>>>> Stashed changes
 
+    func fetchAllWeatherInfoSorted(by key: String, ascending: Bool) -> [CDWeatherInfo] {
+        let fetchRequest: NSFetchRequest<CDWeatherInfo> = CDWeatherInfo.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: key, ascending: ascending)]
+        
         do {
-            try context.execute(deleteRequest)
-            try context.save()
-
-           
-            if let fetchedResults = try context.fetch(fetchRequest) as? [CDWeatherInfo] {
-                for object in fetchedResults {
-                    context.delete(object)
-                }
-                try context.save()
-            }
+            let results = try context.fetch(fetchRequest)
+            return results
         } catch {
-            print("Failed to delete weather info: \(error)")
+            print("Failed to fetch sorted weather info: \(error)")
+            return []
         }
     }
+
+//    func deleteAllWeatherInfo() {
+//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CDWeatherInfo.fetchRequest()
+//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+//
+//        do {
+//            try context.execute(deleteRequest)
+//            try context.save()
+//
+//            if let fetchedResults = try context.fetch(fetchRequest) as? [CDWeatherInfo] {
+//                for object in fetchedResults {
+//                    context.delete(object)
+//                }
+//                try context.save()
+//            }
+//        } catch {
+//            print("Failed to delete weather info: \(error)")
+//        }
+//    }
 }
 
 private extension CoreDataService {
