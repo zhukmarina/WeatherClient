@@ -92,7 +92,7 @@ extension ForecastViewController: UICollectionViewDelegate, UICollectionViewData
                 return UICollectionViewCell()
             }
 
-            let forecast = weatherData[indexPath.item ]
+            let forecast = weatherData[indexPath.item + 1]
             let temperature = WeatherUtils.convertToCelsius(kelvin: forecast.temperature)
             let time = WeatherUtils.formatTime(from: forecast.dt)
             cell.configure(time: time, temperature: temperature, weatherIcon: UIImage(named: "sunny"))
@@ -103,7 +103,7 @@ extension ForecastViewController: UICollectionViewDelegate, UICollectionViewData
                 return UICollectionViewCell()
             }
 
-            let forecast = weatherData[indexPath.item * 8]
+            let forecast = weatherData[(indexPath.item * 8) + 1]
             let temperature = WeatherUtils.convertToCelsius(kelvin: forecast.temperature)
             let date = WeatherUtils.formatDayAndDate(from: forecast.dt)
             cell.configure(date: date, temperature: temperature, weatherIcon: UIImage(named: "cloudy"))

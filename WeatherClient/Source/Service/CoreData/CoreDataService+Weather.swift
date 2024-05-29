@@ -1,10 +1,13 @@
 import CoreData
 
+import CoreData
+
 protocol CoreDataWeather {
     func insertWeatherInfo(with info: DMWeatherInfo)
-    func insertForecastWeather(with info: DMForecastWeather, for cityName:String?)
+    func insertForecastWeather(with info: DMForecastWeather, for cityName: String?)
     func fetchAllWeatherInfo() -> [CDWeatherInfo]
     func fetchWeatherDetails(for weatherInfo: CDWeatherInfo) -> CDWeatherDetails?
+    func fetchAllWeatherInfoSorted(by key: String, ascending: Bool) -> [CDWeatherInfo] // Новий метод
 }
 
 extension CoreDataService: CoreDataWeather {
@@ -40,9 +43,8 @@ extension CoreDataService: CoreDataWeather {
         save(context: context)
     }
 
-    func insertForecastWeather(with info: DMForecastWeather, for cityName:String?) {
-
-        deleteAllWeatherInfo()
+    func insertForecastWeather(with info: DMForecastWeather, for cityName: String?) {
+      
 
         for forecast in info.list {
             let forecastInfoEntityDescription = NSEntityDescription.entity(forEntityName: "CDWeatherInfo", in: context)!
@@ -72,7 +74,6 @@ extension CoreDataService: CoreDataWeather {
         let fetchRequest: NSFetchRequest<CDWeatherInfo> = CDWeatherInfo.fetchRequest()
         fetchRequest.relationshipKeyPathsForPrefetching = ["weatherDetails"] // Жадная загрузка
         
-       
         let sortDescriptor = NSSortDescriptor(key: "dt", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -88,27 +89,38 @@ extension CoreDataService: CoreDataWeather {
             return []
         }
     }
-    
 
-    func deleteAllWeatherInfo() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CDWeatherInfo.fetchRequest()
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-
+    func fetchAllWeatherInfoSorted(by key: String, ascending: Bool) -> [CDWeatherInfo] {
+        let fetchRequest: NSFetchRequest<CDWeatherInfo> = CDWeatherInfo.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: key, ascending: ascending)]
+        
         do {
-            try context.execute(deleteRequest)
-            try context.save()
-
-           
-            if let fetchedResults = try context.fetch(fetchRequest) as? [CDWeatherInfo] {
-                for object in fetchedResults {
-                    context.delete(object)
-                }
-                try context.save()
-            }
+            let results = try context.fetch(fetchRequest)
+            return results
         } catch {
-            print("Failed to delete weather info: \(error)")
+            print("Failed to fetch sorted weather info: \(error)")
+            return []
         }
     }
+
+//    func deleteAllWeatherInfo() {
+//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CDWeatherInfo.fetchRequest()
+//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+//
+//        do {
+//            try context.execute(deleteRequest)
+//            try context.save()
+//
+//            if let fetchedResults = try context.fetch(fetchRequest) as? [CDWeatherInfo] {
+//                for object in fetchedResults {
+//                    context.delete(object)
+//                }
+//                try context.save()
+//            }
+//        } catch {
+//            print("Failed to delete weather info: \(error)")
+//        }
+//    }
 }
 
 private extension CoreDataService {
