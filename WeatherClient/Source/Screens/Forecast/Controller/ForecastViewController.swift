@@ -72,44 +72,61 @@ extension ForecastViewController: ForecastModelDelegate {
         self.weatherData = data 
         contentView.todayForecastCollectionView.reloadData()
         contentView.nextWeekColectionView.reloadData()
-//        print("Data ______________________ loaded: \(data [1...5] )")
+
     }
+    
 }
 
 extension ForecastViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == contentView.todayForecastCollectionView {
-            return min(5, weatherData.count)
-        } else {
-            return weatherData.count / 8
-        }
+                   
+                   return min(5, weatherData.count - 1)
+               } else {
+                   
+                   return (weatherData.count - 1) / 8
+               }
     }
-
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == contentView.todayForecastCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayForecastCell", for: indexPath) as? TodayForecastCell else {
-                assertionFailure()
-                return UICollectionViewCell()
-            }
+           if collectionView == contentView.todayForecastCollectionView {
+               guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TodayForecastCell", for: indexPath) as? TodayForecastCell else {
+                   assertionFailure()
+                   return UICollectionViewCell()
+               }
 
-            let forecast = weatherData[indexPath.item + 1]
-            let temperature = WeatherUtils.convertToCelsius(kelvin: forecast.temperature)
-            let time = WeatherUtils.formatTime(from: forecast.dt)
-            cell.configure(time: time, temperature: temperature, weatherIcon: UIImage(named: "sunny"))
-            return cell
-        } else {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NextWeekForecastCell", for: indexPath) as? NextWeekForecastCell else {
-                assertionFailure()
-                return UICollectionViewCell()
-            }
+               let safeIndex = indexPath.item + 1
+               if safeIndex < weatherData.count {
+                   let forecast = weatherData[safeIndex]
+                   let temperature = WeatherUtils.convertToCelsius(kelvin: forecast.temperature)
+                   let time = WeatherUtils.formatTime(from: forecast.dt)
+                   let weatherDetails = forecast.weatherDetails as? Set<CDWeatherDetails>
 
-            let forecast = weatherData[(indexPath.item * 8) + 1]
-            let temperature = WeatherUtils.convertToCelsius(kelvin: forecast.temperature)
-            let date = WeatherUtils.formatDayAndDate(from: forecast.dt)
-            cell.configure(date: date, temperature: temperature, weatherIcon: UIImage(named: "cloudy"))
-            return cell
-        }
-    }
+                   cell.configure(time: time, temperature: temperature, weatherDetails: weatherDetails)
+               } else {
+                   print("Error: safeIndex is out of bounds: \(safeIndex)")
+               }
+               return cell
+           } else {
+               guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NextWeekForecastCell", for: indexPath) as? NextWeekForecastCell else {
+                   assertionFailure()
+                   return UICollectionViewCell()
+               }
+
+               let safeIndex = (indexPath.item * 8)
+               if safeIndex + 1 < weatherData.count {
+                   let forecast = weatherData[safeIndex + 1]
+                   let temperature = WeatherUtils.convertToCelsius(kelvin: forecast.temperature)
+                   let date = WeatherUtils.formatDayAndDate(from: forecast.dt)
+                   let weatherDetails = forecast.weatherDetails as? Set<CDWeatherDetails>
+
+                   cell.configure(date: date, temperature: temperature, weatherDetails: weatherDetails)
+               } else {
+                   print("Error: safeIndex is out of bounds: \(safeIndex)")
+               }
+               return cell
+           }
+       }
+
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == contentView.todayForecastCollectionView {

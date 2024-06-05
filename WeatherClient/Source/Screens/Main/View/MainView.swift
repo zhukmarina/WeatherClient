@@ -26,20 +26,23 @@ class MainView: UIView{
 
 }
 
-extension MainView: MainViewProtocol{
+extension MainView: MainViewProtocol {
     
-    
-    func setupWeather(temp: String, cityName: String, hum:String, wind:String, date:String, mainInfo: String, icon: String) {
+    func setupWeather(temp: String, cityName: String, hum: String, wind: String, date: String, mainInfo: String, icon: String) {
         tempLabel.text = temp
         cityNamelabel.text = cityName
         humCounterLabel.text = "\(hum)%"
         windLabel.text = "\(wind) m/s"
         dateLaabel.text = date
         mainInfoLabel.text = mainInfo
-       
-        
-       
+
+        if let iconURL = URL(string: "https://openweathermap.org/img/wn/\(icon)@2x.png") {
+            setWeatherIcon(with: iconURL)
+        }
+    }
+
+    func setWeatherIcon(with url: URL) {
+        iconLabel.loadImage(from: url)
     }
 }
-
 

@@ -58,9 +58,15 @@ extension MainModel: MainModelProtocol {
                 DispatchQueue.main.async {
                     if let weather = weatherInfo {
                         print("Fetched weather data from API: \(weather)")
+                
+                        self?.storageService.deleteAllWeatherInfo()
+                        
                         self?.storageService.insertWeatherInfo(with: weather)
+                        print("Inserted weather data with dt: \(weather.dt)")
+                        
                         if let fetchedWeather = self?.storageService.fetchAllWeatherInfoSorted(by: "dt", ascending: false).last {
                             print("Fetched new weather data from storage: \(fetchedWeather)")
+                            print("Fetched weather date: \(fetchedWeather.dt)")
                             self?.loadWeatherDetails(for: fetchedWeather)
                         } else {
                             print("Failed to fetch new weather data from storage after inserting.")
@@ -76,7 +82,7 @@ extension MainModel: MainModelProtocol {
     private func loadWeatherDetails(for weatherInfo: CDWeatherInfo) {
         weatherInfo.weatherDetails?.allObjects.forEach { (detail) in
             if let weatherDetail = detail as? CDWeatherDetails {
-                // Додаткові дії, якщо необхідно
+               
             }
         }
         selectCityName = weatherInfo.cityName

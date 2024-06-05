@@ -34,6 +34,7 @@
 		055B230C2BE922BB00C07D66 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 055B230B2BE922BB00C07D66 /* Base */; };
 		055B23182BE925D700C07D66 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B23172BE925D700C07D66 /* CoreDataService.swift */; };
 		055B233C2BE929ED00C07D66 /* DMWeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055B23342BE929ED00C07D66 /* DMWeatherInfo.swift */; };
+		05681D222C0E580C0010F17E /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05681D212C0E580C0010F17E /* UIImageView+Extensions.swift */; };
 		058FA7D72BFE8E1E00F41C58 /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058FA7D62BFE8E1E00F41C58 /* ForecastModel.swift */; };
 		058FA7D92BFE8E3A00F41C58 /* ForecastModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058FA7D82BFE8E3A00F41C58 /* ForecastModelProtocol.swift */; };
 		058FA7DB2BFE8E4B00F41C58 /* ForecastModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058FA7DA2BFE8E4B00F41C58 /* ForecastModelDelegate.swift */; };
@@ -96,6 +97,7 @@
 		055B230D2BE922BB00C07D66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		055B23172BE925D700C07D66 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		055B23342BE929ED00C07D66 /* DMWeatherInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMWeatherInfo.swift; sourceTree = "<group>"; };
+		05681D212C0E580C0010F17E /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		058FA7D62BFE8E1E00F41C58 /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
 		058FA7D82BFE8E3A00F41C58 /* ForecastModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModelProtocol.swift; sourceTree = "<group>"; };
 		058FA7DA2BFE8E4B00F41C58 /* ForecastModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModelDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			children = (
 				053804812BF7EEBA00897BD7 /* GradientView.swift */,
 				053804852BF7F3E700897BD7 /* RoundedView.swift */,
+				05681D212C0E580C0010F17E /* UIImageView+Extensions.swift */,
 			);
 			path = style;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				058FA7DD2BFE8E6900F41C58 /* ForecastViewController.swift in Sources */,
 				05AA72C52BE970ED0084E08B /* CoreDataService+Weather.swift in Sources */,
 				05AA72BE2BE95EE80084E08B /* CDWeatherDetails+CoreDataClass.swift in Sources */,
+				05681D222C0E580C0010F17E /* UIImageView+Extensions.swift in Sources */,
 				05AA72DB2BED3EB60084E08B /* NetworkService.swift in Sources */,
 				058FA7ED2C04C4BC00F41C58 /* WeatherUtils.swift in Sources */,
 				055B23182BE925D700C07D66 /* CoreDataService.swift in Sources */,

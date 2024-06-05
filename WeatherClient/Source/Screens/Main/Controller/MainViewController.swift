@@ -4,7 +4,6 @@
 //
 //  Created by Marina Zhukova on 09.05.2024.
 //
-
 import UIKit
 
 class MainViewController: UIViewController {
@@ -25,13 +24,12 @@ class MainViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "forecastSegue"{
-            if let vc = segue.destination as? ForecastViewController{
+        if segue.identifier == "forecastSegue" {
+            if let vc = segue.destination as? ForecastViewController {
                 vc.cityName = model.cityName
             }
         }
     }
-  
     
     private func setupInitialState() {
         let mainModel = MainModel(delegate: self)
@@ -39,17 +37,17 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: MainViewDelegate{
-    func setupUI(){
+extension MainViewController: MainViewDelegate {
+    func setupUI() {
         let gradientView = GradientView()
-            gradientView.startColor = UIColor(red: 71/255, green: 191/255, blue: 223/255, alpha: 1.0)
-            gradientView.endColor = UIColor(red: 74/255, green: 145/255, blue: 255/255, alpha: 1.0)
-            gradientView.startPoint = CGPoint(x: 0, y: 0)
-            gradientView.endPoint = CGPoint(x: 1, y: 1)
+        gradientView.startColor = UIColor(red: 71/255, green: 191/255, blue: 223/255, alpha: 1.0)
+        gradientView.endColor = UIColor(red: 74/255, green: 145/255, blue: 255/255, alpha: 1.0)
+        gradientView.startPoint = CGPoint(x: 0, y: 0)
+        gradientView.endPoint = CGPoint(x: 1, y: 1)
 
-            gradientView.frame = view.bounds
+        gradientView.frame = view.bounds
         
-            view.insertSubview(gradientView, at: 0)
+        view.insertSubview(gradientView, at: 0)
     }
 }
 
